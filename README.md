@@ -21,5 +21,36 @@ Chú ý: Command line `git commit -am "Update sth"` chỉ đúng với những f
 Để kết hợp lệnh được thì ta phải sử dụng `alias` như dưới đây.
 
 ```php
-git config --global alias.viet `!git add -A && git commit -m`
+git config --global alias.viet '!git add -A && git commit -m'
+```
+
+- Cờ `--global` chop phép sử dụng trên toàn bộ máy mac của mình (ứng với mọi `repo` trên máy mình) chứ ko phải riêng `repo` được alias.
+
+Lúc này ta chỉ cần
+
+```php
+git viet "Add alias viet"
+```
+
+# II. Ghi đè message trước đó
+
+Ta sử dụng 
+
+```php
+git commit --amend -m "Update latest message commit"
+```
+
+Sử dụng thêm cờ `--amend` ta sẽ update message của commit trước đó. Chú ý nó chỉ có tác dụng duy nhất là update message của commit trước đó thôi nhé, chứ không `track` hay `update các file vừa được modifiled`.
+
+# III. Reset Commit
+
+Ờ `git reset` ta có 2 cờ:
+- `--solf`: Sẽ reset các commit trước đó nhưng `vẫn muốn lưu các thay đổi` của mình trên branch ta đang làm và có thể mang sự thay đổi đó sang branch khác.
+- `--hard`: Sẽ reset các commit trước đó nhưng `không muốn lưu các thay đổi`
+
+Ta có thể sử dụng 2 kiểu như sau:
+
+```php
+git reset --soft HEAD~2      //Reset về 2 commit trước đó
+git reset --hard debf3c31b73399b101562085b80462dc931b7431
 ```
